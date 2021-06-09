@@ -58,7 +58,8 @@ return (
 {showRankings}
 
 <h2> Vote  on your most favorite person in class - Only one -- You guys better vote for me</h2>  
-<h3> I have set myself as default ..HAHA  </h3>  
+<h3> I have set myself as default ..HAHA  </h3> 
+<h4>Only rule , you can change your mind 3 times , after which all buttons are disabled </h4> 
 <p>{`Currently your favorite person is ${fav}`}</p> 
 {favs}
 
