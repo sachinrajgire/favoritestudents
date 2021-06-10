@@ -18,29 +18,46 @@ const initialState =[
 
 function App() {
 
+
   const [rankings, setRankings] = useState(initialState)
-  const [fav, SetFav] = useState('Sachin')
-
-  function moveUp() {
-    // do some thing here 
+  const [fav, setFav] = useState('Sachin')
+  const [clicked, setClicked] = useState(()=> 10 * 0)
+  
+  function moveUp(name, pos) {
+    console.log( `I clicked on ${name} `)
+   
+    let newRankings = rankings.map(i=>{
+     if(i.name === name) {
+       return {...i,position:pos-1}
+     }
+     return i 
+    })
+    setRankings(newRankings)
   }
 
-  function moveDown() {
-    // do some thing here 
+  function moveDown(name,pos) {
+    let newRankings = rankings.map(i=>{
+      if(i.name === name) {
+        return {...i,position:pos+1}
+      }
+      return i 
+     })
+     setRankings(newRankings)
   }
 
-  function changeFavorite() {
-    // do some thing here 
+  function changeFavorite(name) {
+    setClicked(clicked+1)
+    setFav(name)
   }
 
 
 const showRankings =rankings
 .sort((a,b)=> a.position - b.position)
-.map(i=>{
+.map((i,idx,arr)=>{
 return (<div style={{margin:"10px"}}>
  {i.name} {" "}
- <button onClick={()=>moveUp()}>Move Up </button>{" "}
- <button onClick={()=>moveUp()}> Move Down </button>{" "}
+ <button onClick={()=>moveUp(i.name,arr[idx-1].position)}>Move Up </button>{" "}
+ <button onClick={()=>moveDown(i.name,arr[idx+1].position)}> Move Down </button>{" "}
 </div>)
 })
 
@@ -48,7 +65,7 @@ const favs =rankings
 .map(i=>{
 return (<div style={{margin:"10px"}}>
  {i.name} {" "}
- <button onClick={()=>changeFavorite()}>{`Click Here to make ${i.name} your Favorite`}</button>{" "}
+ <button disabled={clicked ===3} onClick={()=>changeFavorite(i.name)}>{`Click Here to make ${i.name} your Favorite`}</button>{" "}
 </div>)
 })
 
