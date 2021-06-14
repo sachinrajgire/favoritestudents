@@ -81,3 +81,15 @@ export default MainTable;
 
 
 
+// Raising the State -- Common Parent  -- They need have to
+//
+// Parent ---> Child ---Child 
+
+//prop drilling -->2 level 3 levels 
+// Single source of Truth
+// Container - Component which maintains state
+
+// State management libary  --- Redux , Context , window object , localStorage 
+
+// useEffect  
+//

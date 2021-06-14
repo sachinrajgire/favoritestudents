@@ -1,18 +1,32 @@
 
-import React ,{useState} from 'react';
+import React ,{useState,useEffect} from 'react';
 
-const InputForm = ({data,setData,editData}) => {
-  const {name:incomingName,projectLink:incomingProjectLink,hw1:incomingHW1,hw2:incomingHW2} = editData
+const InputForm = ({data,setData,selectedRow,setSelectedRow}) => {
+  console.log(selectedRow,'selectedRowXXX')
 
-  const [name,setName] =useState(incomingName)
-  const [projectLink,setProjectLink] =useState(incomingProjectLink)
-  const [hw1,setHW1] =useState(incomingHW1)
-  const [hw2,setHW2] =useState(0)
+  
+  const {Name:incomingName,"Netlify Project Link":incomingProjectLink,"Homework1 ( 2 ) Git Practice":incomingHW1,"Homework2( 2 ) Javascript":incomingHW2} = selectedRow
+console.log(incomingName,'incomingName');
+const [name,setName] =useState("")
+const [projectLink,setProjectLink] =useState("")
+const [hw1,setHW1] =useState(0)
+const [hw2,setHW2] =useState(0)
 
-  console.log(name,'NAME');
-  console.log(projectLink,'projectLink');
-  console.log(hw1,'hw1');
-  console.log(hw2,'hw2');
+console.log(name,'NAME');
+console.log(projectLink,'projectLink');
+console.log(hw1,'hw1');
+console.log(hw2,'hw2');
+
+  useEffect (()=>{
+  const {Name:incomingName,"Netlify Project Link":incomingProjectLink,"Homework1 ( 2 ) Git Practice":incomingHW1,"Homework2( 2 ) Javascript":incomingHW2} = selectedRow
+
+   setName(incomingName)
+   setProjectLink(incomingProjectLink)
+   setHW1(incomingHW1)
+   setHW2(incomingHW2)
+
+
+  },[selectedRow,data]) 
 
 function handleNameInput (e) {
   setName(e.target.value) 
@@ -35,7 +49,8 @@ let editedEntry ={
   "Homework1 ( 2 ) Git Practice": hw1,
   "Homework2( 2 ) Javascript": hw2,
 }
-let filtereddata = data.filter(i=>i.Name === name )
+let cData = [...data]
+let filtereddata = cData.filter(i=>i.Name !== selectedRow.Name )
 filtereddata.push(editedEntry)
 
 setData(filtereddata)
@@ -45,7 +60,7 @@ setData(filtereddata)
 return (
 <div style={{margin:'100px'}}>
 <label>Whats the name</label> {" "}
-<input type='text' value={name} placeholder="Enter your name here" onChange={(e)=>handleNameInput(e)}/>
+<input type='text' value={name} placeholder={name} onChange={(e)=>handleNameInput(e)}/>
 <br/>
 <label>Project Link</label> {" "}
 <input type='text' value={projectLink} placeholder="Project Link" onChange={(e)=>handleProjectLink(e)}/>
@@ -56,8 +71,8 @@ return (
 <label>HW2 </label> {" "}
 <input type='number' value={hw2} placeholder="Project Link" onChange={(e)=>handleHW2(e)}/>
 
-<button onClick={()=>handleSubmit()}>SUBMIT </button>
 
+<button onClick={()=>handleSubmit()}>SUBMIT </button>
 </div>
 
 )

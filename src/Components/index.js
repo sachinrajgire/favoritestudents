@@ -7,17 +7,19 @@ import '../App.css'
 import InputForm from './InputForm';
 import EditForm from './EditForm';
 
-
 const Scores = () => {
 
-    const [data, setData] = useState(importedData) 
-    const [editData, setEditData] = useState({}) 
-
+    const [data, setData] = useState(importedData) // 
+    const [selectedRow, setSelectedRow] = useState({}) 
+    
+ 
     function handleEdit (name) {
         let cData = [...data]
-        let filterData = cData.find(i=>i.Name !== name)
-        setEditData(filterData)
+        let filterData = cData.find(i=>i.Name === name)
+        console.log(filterData,'filterData');
+        setSelectedRow(filterData)
          }
+
 
 
     return (
@@ -36,9 +38,8 @@ const Scores = () => {
             <EditForm 
            data ={data}
            setData={setData}
-           editData={editData}
-
-
+           selectedRow={selectedRow}
+           setSelectedRow={setSelectedRow}
            />
             
         </div>
