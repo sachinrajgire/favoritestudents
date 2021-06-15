@@ -2,12 +2,21 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import Scores  from './Components' ;
+import Routing  from './Routing' ;
+import {
+  HashRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Scores />
+    <Router>
+    <Routing />
+    </Router>
   </React.StrictMode>,
+
   document.getElementById('root')
 );
 

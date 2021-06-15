@@ -1,7 +1,8 @@
 
 import React ,{useState} from 'react';
+import Navbar from '../Navbar/Navbar'
 
-const InputForm = ({data,setData}) => {
+const CreateNewForm = ({data,setData}) => {
 
   const [name,setName] =useState("")
   const [projectLink,setProjectLink] =useState("")
@@ -39,7 +40,8 @@ setData(cData)
 }
 
 return (
-<div style={{margin:'100px'}}>
+  <div >
+    <Navbar>
 <label>Whats the name</label> {" "}
 <input type='text' value={name} placeholder="Enter your name here" onChange={(e)=>handleNameInput(e)}/>
 <br/>
@@ -53,7 +55,7 @@ return (
 <input type='number' value={hw2} placeholder="Project Link" onChange={(e)=>handleHW2(e)}/>
 
 <button onClick={()=>handleSubmit()}>SUBMIT </button>
-
+</Navbar>
 </div>
 
 )
@@ -61,7 +63,7 @@ return (
 
 };  
 
-export default InputForm;
+export default CreateNewForm;
 
 
 

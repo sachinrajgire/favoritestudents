@@ -1,7 +1,7 @@
 
 import React ,{useState,useEffect} from 'react';
 
-const InputForm = ({data,setData,selectedRow,setSelectedRow}) => {
+const CreateNewForm = ({data,setData,selectedRow}) => {
   console.log(selectedRow,'selectedRowXXX')
 
   
@@ -80,7 +80,6 @@ return (
 
 };  
 
-export default InputForm;
-
+export default CreateNewForm;
 
 
